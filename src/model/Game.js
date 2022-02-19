@@ -7,10 +7,14 @@ function Game(word){
         "ΛΕΥΚΩΣΙΑ",
         "ΚΙΤΙ",
         "ΝΑΤΑ",
-        "ΚΟΡΝΟΣ"
+        "ΚΟΡΝΟΣ",
+        "ΛΥΣΗ"
     ]
 
-    this.board = Array(5).fill(Array(word.length).fill(""))
+    this.board = Array(5).fill(Array(word.length).fill({
+        letter: "",
+        result: ""
+    }))
 
     this.cursor = {
         row: 0,
@@ -23,7 +27,10 @@ function Game(word){
             throw "Cursor at end of row"
         }
 
-        this.board[this.cursor.row][this.cursor.square] = letter
+        this.board[this.cursor.row][this.cursor.square] = {
+            letter,
+            result: ""
+        }
         this.cursor.square++
     }
 
@@ -33,15 +40,44 @@ function Game(word){
             throw "Cursor not at end of row"
         }
 
-        let inputCharacters = this.board[this.cursor.row]
+        let inputCharacters = this.board[this.cursor.row].map((square) => square.letter)
         let input = inputCharacters.join("")
-        let gameWordCharacters = this.word.split("")
 
         if(!this.wordList.includes(input)){
             throw "Word not in word list"
         }
 
+        let results = this.getResultForCurrentRow()
+
+        this.board[this.cursor.row] = results.map((result, index) => (
+            {
+                letter: inputCharacters[index],
+                result: results[index]
+            }
+        ))
+
+        if(results.filter((result => result === "CORRECT")).length === results.length){
+            return {
+                correctWord: true
+            }
+        }
+        else{
+            this.cursor.row++
+            this.cursor.square = 0
+            return {
+                correctWord: false
+            }
+        }
+
+    }
+
+    this.getResultForCurrentRow = () => {
         let results = Array(this.word.length).fill("")
+
+        let inputCharacters = this.board[this.cursor.row].map((square) => square.letter)
+        let gameWordCharacters = this.word.split("")
+
+
 
         inputCharacters.forEach((character, index) => {
             if(!gameWordCharacters.includes(character)){
@@ -64,10 +100,7 @@ function Game(word){
             }
         })
 
-        console.log(results);
-
         return results
-
     }
 }
 

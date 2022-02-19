@@ -18,7 +18,8 @@ test("Each row contains empty squares the length of the word", () => {
         expect(row.length).toBe(7)
 
         row.forEach((square) => {
-            expect(square).toBe("")
+            expect(square.letter).toBe("")
+            expect(square.result).toBe("")
         })
     })
 })
@@ -34,11 +35,11 @@ test("Letter is added at cursor when addLetter is called", () => {
     let game = new Game("ΑΘΗΕΝΟΥ")
 
     game.addLetter("Α")
-    expect(game.board[0][0]).toBe("Α")
+    expect(game.board[0][0].letter).toBe("Α")
     expect(game.cursor.square).toBe(1)
 
     game.addLetter("Α")
-    expect(game.board[0][1]).toBe("Α")
+    expect(game.board[0][1].letter).toBe("Α")
     expect(game.cursor.square).toBe(2)
 })
 
@@ -89,7 +90,7 @@ test("checkWord does not throw exception if word in word list", () => {
     expect(() => game.checkWord()).not.toThrow("Word not in word list")
 })
 
-test("checkWord gets correct results", () => {
+test("getResultForCurrentRow gets correct results", () => {
     let game = new Game("ΛΥΣΗ")
 
     game.wordList.push("ΛΥΣΣ")
@@ -99,13 +100,81 @@ test("checkWord gets correct results", () => {
     game.addLetter("Σ")
     game.addLetter("Σ")
 
-    let results = game.checkWord()
+    let results = game.getResultForCurrentRow()
 
     expect(results[0]).toBe("CORRECT")
     expect(results[1]).toBe("CORRECT")
     expect(results[2]).toBe("CORRECT")
     expect(results[3]).toBe("WRONG")
+})
+
+test("checkWord populates the board with correct results", () => {
+    let game = new Game("ΛΥΣΗ")
+
+    game.wordList.push("ΛΥΣΣ")
+
+    game.addLetter("Λ")
+    game.addLetter("Υ")
+    game.addLetter("Σ")
+    game.addLetter("Σ")
+
+    game.checkWord()
+
+    game.board[0][0].letter = "Λ"  
+    game.board[0][0].result = "CORRECT"
+
+    game.board[0][0].letter = "Υ"  
+    game.board[0][0].result = "CORRECT"
+
+    game.board[0][0].letter = "Σ" 
+    game.board[0][0].result = "CORRECT"
+
+    game.board[0][0].letter = "Σ"  
+    game.board[0][0].result = "WRONG"
+})
+
+test("checkWord returns true for correct word guess", () => {
+    let game = new Game("ΛΥΣΗ")
+
+    game.addLetter("Λ")
+    game.addLetter("Υ")
+    game.addLetter("Σ")
+    game.addLetter("Η")
+
+    let check = game.checkWord()
+
+    expect(check.correctWord).toBe(true)
+})
+
+test("checkWord returns false for incorrect word guess", () => {
+    let game = new Game("ΛΥΣΗ")
+
+    game.wordList.push("ΛΥΣΣ")
 
 
+    game.addLetter("Λ")
+    game.addLetter("Υ")
+    game.addLetter("Σ")
+    game.addLetter("Σ")
 
+    let check = game.checkWord()
+
+    expect(check.correctWord).toBe(false)
+})
+
+test("checkWord moves cursor to next row if guess is incorrect", () => {
+    let game = new Game("ΛΥΣΗ")
+
+    game.wordList.push("ΛΥΣΣ")
+
+
+    game.addLetter("Λ")
+    game.addLetter("Υ")
+    game.addLetter("Σ")
+    game.addLetter("Σ")
+
+    game.checkWord()
+
+    expect(game.cursor.row).toBe(1)
+    expect(game.cursor.square).toBe(0)
 })
