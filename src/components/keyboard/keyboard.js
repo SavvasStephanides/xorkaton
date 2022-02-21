@@ -1,5 +1,5 @@
 import "./keyboard.scss"
-function Keyboard({keyboardPressLetterEvent, keyboardEnterPressEvent}){
+function Keyboard({keyboardPressLetterEvent, keyboardEnterPressEvent, keyboardBackspacePressEvent}){
     let keys = [
         "Ε Ρ Τ Υ Θ Ι Ο Π",
         "Α Σ Δ Φ Γ Η Ξ Κ Λ",
@@ -22,6 +22,7 @@ function Keyboard({keyboardPressLetterEvent, keyboardEnterPressEvent}){
         }
         <div className="keyboard-row">
             <button className="keyboard-key" onClick={keyboardEnterPressEvent}>!</button>
+            <button className="keyboard-key" onClick={keyboardBackspacePressEvent}>/</button>
         </div>
     </div>
     

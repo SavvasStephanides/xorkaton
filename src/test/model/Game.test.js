@@ -54,6 +54,40 @@ test("addLetter throws Exception when cursor at end of row", () => {
     expect(() => game.addLetter("A")).toThrow("Cursor at end of row")
 })
 
+test("removeLetterBeforeCursor removes the letter before the cursor", () => {
+    let game = new Game("ABC")
+    game.addLetter("A")
+    game.addLetter("B")
+
+    game.removeLetterBeforeCursor()
+
+    expect(game.board[0][0].letter).toBe("A")
+    expect(game.board[0][1].letter).toBe("")
+})
+
+test("removeLetterBeforeCursor moves cursor back one square", () => {
+    let game = new Game("ABC")
+    game.addLetter("A")
+    game.addLetter("B")
+    game.addLetter("C")
+
+
+    game.removeLetterBeforeCursor()
+
+    expect(game.cursor.square).toBe(2)
+})
+
+test("removeLetterBeforeCursor throws error if square cursor is at 0", () => {
+    let game = new Game("ABC")
+    game.addLetter("A")
+    game.addLetter("B")
+    
+    game.removeLetterBeforeCursor()
+    game.removeLetterBeforeCursor()
+
+    expect(() => game.removeLetterBeforeCursor()).toThrow("No more letters to erase")
+})
+
 test("checkWord throws exception if cursor not at end", () => {
     let game = new Game("ABC")
     game.addLetter("A")

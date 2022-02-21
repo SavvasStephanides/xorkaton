@@ -1,20 +1,10 @@
 import Square from "./Square"
 
 function Game(word){
+    this.gameIsInProgress = true
     this.word = word
 
-    this.wordList = [
-        "ΑΘΗΕΝΟΥ",
-        "ΑΧΝΑ",
-        "ΛΕΥΚΩΣΙΑ",
-        "ΚΙΤΙ",
-        "ΝΑΤΑ",
-        "ΚΟΡΝΟΣ",
-        "ΛΥΣΗ",
-        "ΑΣΙΑ",
-        "ΠΕΓΕΙΑ",
-        "ΠΑΦΟΣ"
-    ]
+    this.wordList = require("./wordlist.json")
 
     this.board = []
 
@@ -39,6 +29,16 @@ function Game(word){
         this.board[this.cursor.row][this.cursor.square].letter = letter
 
         this.cursor.square++
+    }
+
+    this.removeLetterBeforeCursor = () => {
+        if(this.cursor.square === 0){
+            throw "No more letters to erase"
+        }
+            
+        this.board[this.cursor.row][this.cursor.square-1].letter = ""
+
+        this.cursor.square--
     }
 
     this.checkWord = () => {

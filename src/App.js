@@ -6,7 +6,7 @@ import { useState } from "react";
 
 function App() {
   
-  const [game, setGame] = useState(new Game("ΚΙΤΙ"))
+  const [game, setGame] = useState(new Game("ΠΥΡΟΙ"))
   
   return (
     <div className="App">
@@ -17,7 +17,8 @@ function App() {
 
         <Keyboard 
           keyboardPressLetterEvent={keyboardPressLetterEvent}
-          keyboardEnterPressEvent={keyboardEnterPressEvent}/>
+          keyboardEnterPressEvent={keyboardEnterPressEvent}
+          keyboardBackspacePressEvent={keyboardBackspacePressEvent}/>
       </div>
     </div>
   )
@@ -29,6 +30,11 @@ function App() {
 
   function keyboardEnterPressEvent(){
     game.checkWord()
+    setGame({...game})
+  }
+
+  function keyboardBackspacePressEvent(){
+    game.removeLetterBeforeCursor()
     setGame({...game})
   }
 }
