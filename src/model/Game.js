@@ -23,7 +23,7 @@ function Game(word){
     this.addLetter = (letter) => {
 
         if(this.cursor.square >= this.word.length){
-            throw "Cursor at end of row"
+            throw new Error("Cursor at end of row")
         }
 
         this.board[this.cursor.row][this.cursor.square].letter = letter
@@ -33,7 +33,7 @@ function Game(word){
 
     this.removeLetterBeforeCursor = () => {
         if(this.cursor.square === 0){
-            throw "No more letters to erase"
+            throw new Error("No more letters to erase")
         }
             
         this.board[this.cursor.row][this.cursor.square-1].letter = ""
@@ -44,14 +44,14 @@ function Game(word){
     this.checkWord = () => {
         
         if(this.cursor.square !== this.word.length){
-            throw "Cursor not at end of row"
+            throw new Error("Cursor not at end of row")
         }
 
         let inputCharacters = this.board[this.cursor.row].map((square) => square.letter)
         let input = inputCharacters.join("")
 
         if(!this.wordList.includes(input)){
-            throw "Word not in word list"
+            throw new Error("Word not in word list")
         }
 
         let results = this.getResultForCurrentRow()
