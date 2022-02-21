@@ -1,18 +1,22 @@
 function Header(){
-    const headerStyle = {
-        backgroundColor: "green",
-        height: "60px",
-        display: "flex"
+    const style = {
+        header: {
+            height: "60px",
+            display: "flex"
+        },
+        logo: {
+            display: "block",
+            height: "60px",
+            margin: "auto",
+            transform: "rotate(-6deg)",
+            marginTop: "12px"
+        }
     }
-    const siteNameStyle = {
-        margin: "auto",
-        color: "white",
-        fontFamily: "sans-serif",
-        fontSize: "30px"
-    }
+
     return (
-        <header style={headerStyle}>
-          <div className="site-name" style={siteNameStyle}>Χωρκle</div>
+        <header style={style.header}>
+            <img src="/logo.png" alt="" style={style.logo}/>
+          {/* <div className="site-name" style={style.siteName}>Χωρκle</div> */}
         </header>
     )
 }

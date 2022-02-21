@@ -1,3 +1,5 @@
+import Square from "./Square"
+
 function Game(word){
     this.word = word
 
@@ -8,13 +10,20 @@ function Game(word){
         "ΚΙΤΙ",
         "ΝΑΤΑ",
         "ΚΟΡΝΟΣ",
-        "ΛΥΣΗ"
+        "ΛΥΣΗ",
+        "ΑΣΙΑ",
+        "ΠΕΓΕΙΑ",
+        "ΠΑΦΟΣ"
     ]
 
-    this.board = Array(5).fill(Array(word.length).fill({
-        letter: "",
-        result: ""
-    }))
+    this.board = []
+
+    for(let row = 0 ; row < 5 ; row++){
+        this.board[row] = []
+        for(let square = 0 ; square < word.length ; square++){
+            this.board[row][square] = new Square("", "")
+        }
+    }
 
     this.cursor = {
         row: 0,
@@ -27,10 +36,8 @@ function Game(word){
             throw "Cursor at end of row"
         }
 
-        this.board[this.cursor.row][this.cursor.square] = {
-            letter,
-            result: ""
-        }
+        this.board[this.cursor.row][this.cursor.square].letter = letter
+
         this.cursor.square++
     }
 
@@ -49,12 +56,7 @@ function Game(word){
 
         let results = this.getResultForCurrentRow()
 
-        this.board[this.cursor.row] = results.map((result, index) => (
-            {
-                letter: inputCharacters[index],
-                result: results[index]
-            }
-        ))
+        this.board[this.cursor.row] = results.map((result, index) => new Square(inputCharacters[index], results[index]))
 
         if(results.filter((result => result === "CORRECT")).length === results.length){
             return {
@@ -77,8 +79,6 @@ function Game(word){
         let inputCharacters = this.board[this.cursor.row].map((square) => square.letter)
         let gameWordCharacters = this.word.split("")
 
-
-
         inputCharacters.forEach((character, index) => {
             if(!gameWordCharacters.includes(character)){
                 results[index] = "WRONG"
@@ -87,7 +87,7 @@ function Game(word){
                 results[index] = "CORRECT"
             }
             else if(gameWordCharacters.includes(character)){
-                let i = gameWordCharacters.includes(character)
+                let i = inputCharacters.indexOf(character)
                 if(results[i] === ""){
                     results[i] = "WRONGPOSITION"
                 }

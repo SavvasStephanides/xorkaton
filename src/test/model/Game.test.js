@@ -38,6 +38,8 @@ test("Letter is added at cursor when addLetter is called", () => {
     expect(game.board[0][0].letter).toBe("Α")
     expect(game.cursor.square).toBe(1)
 
+    expect(game.board[1][0].letter).toBe("")
+
     game.addLetter("Α")
     expect(game.board[0][1].letter).toBe("Α")
     expect(game.cursor.square).toBe(2)
@@ -88,6 +90,28 @@ test("checkWord does not throw exception if word in word list", () => {
     game.addLetter("Α")
 
     expect(() => game.checkWord()).not.toThrow("Word not in word list")
+})
+
+test("getResultForCurrentRow works for multiple instances of a letter", () => {
+    let game = new Game("TACIT")
+    game.wordList.push("TAINT")
+    game.wordList.push("GAMBO")
+
+    game.addLetter("T")
+    game.addLetter("A")
+    game.addLetter("I")
+    game.addLetter("N")
+    game.addLetter("T")
+
+    let results = game.getResultForCurrentRow()
+
+    expect(results[0]).toBe("CORRECT")
+    expect(results[1]).toBe("CORRECT")
+    expect(results[2]).toBe("WRONGPOSITION")
+    expect(results[3]).toBe("WRONG")
+    expect(results[4]).toBe("CORRECT")
+
+
 })
 
 test("getResultForCurrentRow gets correct results", () => {
