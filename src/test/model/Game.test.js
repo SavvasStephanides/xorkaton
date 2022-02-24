@@ -191,35 +191,6 @@ test("checkWord populates the board with correct results", () => {
     game.board[0][0].result = "WRONG"
 })
 
-test("checkWord returns true for correct word guess", () => {
-    let game = new Game("ΛΥΣΗ")
-
-    game.addLetter("Λ")
-    game.addLetter("Υ")
-    game.addLetter("Σ")
-    game.addLetter("Η")
-
-    let check = game.checkWord()
-
-    expect(check.correctWord).toBe(true)
-})
-
-test("checkWord returns false for incorrect word guess", () => {
-    let game = new Game("ΛΥΣΗ")
-
-    game.wordList.push("ΛΥΣΣ")
-
-
-    game.addLetter("Λ")
-    game.addLetter("Υ")
-    game.addLetter("Σ")
-    game.addLetter("Σ")
-
-    let check = game.checkWord()
-
-    expect(check.correctWord).toBe(false)
-})
-
 test("checkWord moves cursor to next row if guess is incorrect", () => {
     let game = new Game("ΛΥΣΗ")
 
@@ -235,4 +206,48 @@ test("checkWord moves cursor to next row if guess is incorrect", () => {
 
     expect(game.cursor.row).toBe(1)
     expect(game.cursor.square).toBe(0)
+})
+
+test("gameIsOver returns true if all letters of current row are correct", () => {
+    let game = new Game("ABCD")
+    game.wordList.push("ABCD")
+
+    game.addLetter("A")
+    game.addLetter("B")
+    game.addLetter("C")
+    game.addLetter("D")
+
+    game.checkWord()
+
+    expect(game.gameIsOver()).toBe(true)
+})
+
+test("gameIsOver returns false for wrong guess", () => {
+    let game = new Game("ABCD")
+    game.wordList.push("ABCD")
+    game.wordList.push("ABCE")
+
+    game.addLetter("A")
+    game.addLetter("B")
+    game.addLetter("C")
+    game.addLetter("E")
+
+    game.checkWord()
+
+    expect(game.gameIsOver()).toBe(false)
+})
+
+test("gameIsOver returns true when row cursor is at the end of the board", () => {
+    let game = new Game("AB")
+    game.wordList.push("AC")
+    game.wordList.push("AC")
+    
+    for(let i = 0 ; i < game.board.length; i++){
+        game.addLetter("A")
+        game.addLetter("C")
+        game.checkWord()
+    }
+    
+
+    expect(game.gameIsOver()).toBe(true)
 })

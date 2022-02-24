@@ -1,5 +1,9 @@
 import "./keyboard.scss"
-function Keyboard({keyboardPressLetterEvent, keyboardEnterPressEvent, keyboardBackspacePressEvent}){
+function Keyboard({
+    visibility,
+    keyboardPressLetterEvent, 
+    keyboardEnterPressEvent, 
+    keyboardBackspacePressEvent}){
     let keys = [
         "Ε Ρ Τ Υ Θ Ι Ο Π",
         "Α Σ Δ Φ Γ Η Ξ Κ Λ",
@@ -7,7 +11,7 @@ function Keyboard({keyboardPressLetterEvent, keyboardEnterPressEvent, keyboardBa
       ]
 
     return (
-    <div id="keyboard">
+    <div id="keyboard" visibility={visibility}>
         {
             keys.map((keyRow) => (
                 <div className="keyboard-row">

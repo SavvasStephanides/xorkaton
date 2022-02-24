@@ -10,16 +10,20 @@ function App() {
   
   return (
     <div className="App">
+      {console.log(game.gameIsOver())}
+      
       <div id="game">
         <Header/>
 
-        {<Board game={game}/>}
+        <Board game={game}/>
 
         <Keyboard 
+          visibility={game.gameIsOver() ? "0" : "1"}
           keyboardPressLetterEvent={keyboardPressLetterEvent}
           keyboardEnterPressEvent={keyboardEnterPressEvent}
           keyboardBackspacePressEvent={keyboardBackspacePressEvent}/>
       </div>
+    
     </div>
   )
 

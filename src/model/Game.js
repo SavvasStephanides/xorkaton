@@ -1,7 +1,6 @@
 import Square from "./Square"
 
 function Game(word){
-    this.gameIsInProgress = true
     this.word = word
 
     this.wordList = require("./wordlist.json")
@@ -57,20 +56,13 @@ function Game(word){
         let results = this.getResultForCurrentRow()
 
         this.board[this.cursor.row] = results.map((result, index) => new Square(inputCharacters[index], results[index]))
-
+        
         if(results.filter((result => result === "CORRECT")).length === results.length){
-            return {
-                correctWord: true
-            }
         }
         else{
             this.cursor.row++
             this.cursor.square = 0
-            return {
-                correctWord: false
-            }
         }
-
     }
 
     this.getResultForCurrentRow = () => {
@@ -101,6 +93,19 @@ function Game(word){
         })
 
         return results
+    }
+
+    this.gameIsOver = () => {
+        if(this.cursor.row === this.board.length){
+            return true
+        }
+
+        let rowResults = this.board[this.cursor.row].map((square) => square.result)
+        if(rowResults.filter((result) => result === "CORRECT").length === rowResults.length){
+            return true
+        }
+        
+        return false
     }
 }
 

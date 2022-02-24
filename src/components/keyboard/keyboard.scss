@@ -1,4 +1,7 @@
 #keyboard{
+    &[visibility="0"]{
+        display: none;
+    }
     .keyboard-row{
         margin-top: 9px;
         text-align: center;
