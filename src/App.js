@@ -9,8 +9,12 @@ function App() {
   const [game, setGame] = useState(new Game("ΠΥΡΟΙ"))
 
   useEffect(() => {
-    document.addEventListener("keypress", (e) => {
+    document.addEventListener("keyup", (e) => {
 
+      if(game.gameIsOver()){
+        console.log("Game is over!")
+        return
+      }
       if(e.code === "Enter"){
         game.checkWord()
       }
