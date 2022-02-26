@@ -2,44 +2,62 @@ import Board from "./components/board/board";
 import Header from "./components/header";
 import Game from "./model/Game"
 import Keyboard from "./components/keyboard/keyboard"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
-  
+
   const [game, setGame] = useState(new Game("ΠΥΡΟΙ"))
-  
+
+  useEffect(() => {
+    document.addEventListener("keypress", (e) => {
+
+      if(e.code === "Enter"){
+        game.checkWord()
+      }
+      else if(e.code === "Backspace"){
+        game.removeLetterBeforeCursor()
+      }
+      else if(e.code.startsWith("Key")){
+        let letters = {"E":"Ε","R":"Ρ","T":"Τ","Y":"Υ","U":"Θ","I":"Ι","O":"Ο","P":"Π","A":"Α","S":"Σ","D":"Δ","F":"Φ","G":"Γ","H":"Η","J":"Ξ","K":"Κ","L":"Λ","Z":"Ζ","X":"Χ","C":"Ψ","V":"Ω","B":"Β","N":"Ν","M":"Μ"}
+        let keyPressed = e.code.replace("Key", "")
+
+        game.addLetter(letters[keyPressed])
+      }
+
+      setGame({...game})
+    })
+  }, [])
+
   return (
     <div className="App">
-      {console.log(game.gameIsOver())}
-      
       <div id="game">
-        <Header/>
+        <Header />
 
-        <Board game={game}/>
+        <Board game={game} />
 
-        <Keyboard 
-          visibility={game.gameIsOver() ? "0" : "1"}
+        <Keyboard
+          visibility={game.gameIsOver() ? "HIDDEN" : "VISIBLE"}
           keyboardPressLetterEvent={keyboardPressLetterEvent}
           keyboardEnterPressEvent={keyboardEnterPressEvent}
-          keyboardBackspacePressEvent={keyboardBackspacePressEvent}/>
+          keyboardBackspacePressEvent={keyboardBackspacePressEvent} />
       </div>
-    
+
     </div>
   )
 
-  function keyboardPressLetterEvent(character){
+  function keyboardPressLetterEvent(character) {
     game.addLetter(character)
-    setGame({...game})
+    setGame({ ...game })
   }
 
-  function keyboardEnterPressEvent(){
+  function keyboardEnterPressEvent() {
     game.checkWord()
-    setGame({...game})
+    setGame({ ...game })
   }
 
-  function keyboardBackspacePressEvent(){
+  function keyboardBackspacePressEvent() {
     game.removeLetterBeforeCursor()
-    setGame({...game})
+    setGame({ ...game })
   }
 }
 
