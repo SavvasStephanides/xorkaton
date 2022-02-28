@@ -30,7 +30,7 @@ function App() {
 
       setGame({...game})
     })
-  }, [])
+  }, [game])
 
   return (
     <div className="App">
