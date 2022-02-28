@@ -30,6 +30,12 @@
             color: white;
             animation: flip 0.3s;
         }
+        
+        @for $i from 1 through 10 {
+            .board-row-square {
+                animation-delay: #{$i * 0.3}s;
+            }
+        }
     }
 }
 
