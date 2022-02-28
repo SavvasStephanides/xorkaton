@@ -33,7 +33,7 @@
         
         @for $i from 1 through 10 {
             .board-row-square:nth-child(#{$i}n) {
-                animation-delay: #{$i * 0.3}s;
+                animation-delay: #{$i * 0.1}s;
             }
         }
     }
