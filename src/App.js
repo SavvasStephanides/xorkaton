@@ -29,7 +29,7 @@ function App() {
       }
 
       setGame(game => {
-        return {..game}
+        return {...game}
       })
     })
   }, [])
