@@ -28,9 +28,9 @@ function App() {
         game.addLetter(letters[keyPressed])
       }
 
-      setGame({...game})
+      setGame(game => {...game})
     })
-  }, [game])
+  }, [])
 
   return (
     <div className="App">
