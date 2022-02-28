@@ -27,7 +27,8 @@ function App() {
         game.addLetter(letters[keyPressed])
       }
 
-      setGame({...game})
+      let updatedGame = {...game}
+      setGame(g => updatedGame)
     })
   }, [])
 
