@@ -9,10 +9,9 @@ function App() {
   const [game, setGame] = useState(new Game("ΠΥΡΟΙ"))
 
   useEffect(() => {
-    document.addEventListener("keyup", (e) => {
+    document.body.addEventListener("keyup", (e) => {
 
       if(game.gameIsOver()){
-        console.log("Game is over!")
         return
       }
       if(e.code === "Enter"){
@@ -28,9 +27,7 @@ function App() {
         game.addLetter(letters[keyPressed])
       }
 
-      setGame(game => {
-        return {...game}
-      })
+      setGame({...game})
     })
   }, [])
 
