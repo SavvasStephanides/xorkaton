@@ -68,31 +68,34 @@ function Game(word){
     this.getResultForCurrentRow = () => {
         let results = Array(this.word.length).fill("")
 
-        let inputCharacters = this.board[this.cursor.row].map((square) => square.letter)
-        let gameWordCharacters = this.word.split("")
+        let input = this.board[this.cursor.row].map((square) => square.letter)
+        let correctWord = this.word.split("")
 
-        inputCharacters.forEach((character, index) => {
-            if(!gameWordCharacters.includes(character)){
-                results[index] = "WRONG"
+        for(let i = 0 ; i < input.length ; i++){
+            if(input[i] === correctWord[i]){
+                results[i] = "CORRECT"
+                correctWord[i] = ""
             }
-            else if(character === gameWordCharacters[index]){
-                results[index] = "CORRECT"
-            }
-            else if(gameWordCharacters.includes(character)){
-                let i = inputCharacters.indexOf(character)
-                if(results[i] === ""){
+        }
+
+        for(let i = 0 ; i < input.length ; i++){
+            for(let w = 0 ; w < correctWord.length ; w++){
+                if(results[i] === "" && correctWord[w] === input[i]){
                     results[i] = "WRONGPOSITION"
+                    correctWord[w] = ""
                 }
             }
-        })
+        }
 
-        results.forEach((result, index) => {
-            if(result === ""){
-                results[index] = "WRONG"
+        for(let i = 0 ; i < results.length ; i++){
+            if(results[i] === ""){
+                results[i] = "WRONG"
             }
-        })
+        }
 
         return results
+
+
     }
 
     this.gameIsOver = () => {

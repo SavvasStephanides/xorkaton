@@ -126,6 +126,25 @@ test("checkWord does not throw exception if word in word list", () => {
     expect(() => game.checkWord()).not.toThrow("Word not in word list")
 })
 
+test("getResultForCurrentRow highlights wrong position once", () => {
+    let game = new Game("ΠΥΡΟΙ")
+    
+    game.addLetter("Φ")
+    game.addLetter("Ι")
+    game.addLetter("Λ")
+    game.addLetter("Ι")
+    game.addLetter("Α")
+
+    let results = game.getResultForCurrentRow()
+
+    expect(results[0]).toBe("WRONG")
+    expect(results[1]).toBe("WRONGPOSITION")
+    expect(results[2]).toBe("WRONG")
+    expect(results[3]).toBe("WRONG")
+    expect(results[4]).toBe("WRONG")
+
+})
+
 test("getResultForCurrentRow works for multiple instances of a letter", () => {
     let game = new Game("TACIT")
     game.wordList.push("TAINT")
