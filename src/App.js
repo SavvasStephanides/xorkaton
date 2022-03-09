@@ -2,11 +2,15 @@ import Board from "./components/board/board";
 import Header from "./components/header";
 import Game from "./model/Game"
 import Keyboard from "./components/keyboard/keyboard"
+import Dialog from "./components/dialog/dialog"
+
 import { useEffect, useState } from "react";
 
 function App() {
 
   const [game, setGame] = useState(new Game("ΠΥΡΟΙ"))
+  const [dialogVisibility, setDialogVisibility] = useState("HIDDEN")
+  const [dialogMessage, setDialogMessage] = useState("")
 
   useEffect(() => {
     document.body.addEventListener("keyup", (e) => {
@@ -15,7 +19,13 @@ function App() {
         return
       }
       if(e.code === "Enter"){
-        game.checkWord()
+        try{
+          game.checkWord()
+        }
+        catch(e){
+          showMessageOnDialog(e.message)
+        }
+        
       }
       else if(e.code === "Backspace"){
         game.removeLetterBeforeCursor()
@@ -44,7 +54,9 @@ function App() {
           keyboardPressLetterEvent={keyboardPressLetterEvent}
           keyboardEnterPressEvent={keyboardEnterPressEvent}
           keyboardBackspacePressEvent={keyboardBackspacePressEvent} />
+          
       </div>
+      <Dialog visibility={dialogVisibility} message={dialogMessage} />
 
     </div>
   )
@@ -55,13 +67,28 @@ function App() {
   }
 
   function keyboardEnterPressEvent() {
-    game.checkWord()
-    setGame({ ...game })
+    try{
+      game.checkWord()
+      setGame({ ...game })
+    }
+    catch(e){
+      showMessageOnDialog(e.message)
+    }
   }
 
   function keyboardBackspacePressEvent() {
     game.removeLetterBeforeCursor()
     setGame({ ...game })
+  }
+
+  function showMessageOnDialog(message){
+    setDialogMessage(message)
+    setDialogVisibility("VISIBLE")
+
+    setTimeout(() => {
+      setDialogVisibility("HIDDEN")
+    }, 3000);
+
   }
 }
 
