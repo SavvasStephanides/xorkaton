@@ -7,13 +7,10 @@
     padding: 9px 9px;
     border-radius: 3px;
     width: 240px;
+    opacity: 0;
     transition: opacity 1s;
 
     &[visibility="VISIBLE"]{
-        opacity: 1;
-    }
-    
-    &[visibility="HIDDEN"]{
         opacity: 1;
     }
 }
