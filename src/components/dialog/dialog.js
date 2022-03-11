@@ -1,4 +1,5 @@
-import "./dialog.scss"
+//import "./dialog.scss"
+
 function Dialog({visibility, message}){
     return(
         <div id="dialog" visibility={visibility}>
