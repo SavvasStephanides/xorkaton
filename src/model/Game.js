@@ -110,6 +110,27 @@ function Game(word){
         
         return false
     }
+
+    this.getBoardAsSquares = () => {
+        let heading = `Χωρκle 1 ${this.cursor.row+1}/5`
+        
+        let filledRows = this.board.slice(0, this.cursor.row + 1)
+
+        let rowFlags = filledRows.map((row) => {
+            let flags = {
+                "CORRECT": "🟩",
+                "WRONGPOSITION": "🟨",
+                "WRONG": "⬛️"
+            }
+            return row.map((square) => flags[square.result])
+        })
+
+        let rowString = rowFlags.map((row) => row.join("")).join("\n")
+
+        let boardAsString = `${heading}\n\n${rowString}`
+        
+        return boardAsString
+    }
 }
 
 export default Game

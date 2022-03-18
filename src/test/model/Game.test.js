@@ -270,3 +270,34 @@ test("gameIsOver returns true when row cursor is at the end of the board", () =>
 
     expect(game.gameIsOver()).toBe(true)
 })
+
+test("getBoardAsSquares() returns shareable string", () => {
+    let game = new Game("ABC")
+
+    game.wordList.push("ABC")
+    game.wordList.push("ABD")
+    game.wordList.push("ABE")
+
+    game.addLetter("A")
+    game.addLetter("B")
+    game.addLetter("D")
+    game.checkWord()
+
+    game.addLetter("A")
+    game.addLetter("B")
+    game.addLetter("E")
+    game.checkWord()
+
+    game.addLetter("A")
+    game.addLetter("B")
+    game.addLetter("C")
+    game.checkWord()
+
+    expect(game.gameIsOver()).toBe(true)
+
+    expect(game.getBoardAsSquares()).toBe(`Χωρκle 1 3/5
+
+🟩🟩⬛️
+🟩🟩⬛️
+🟩🟩🟩`)
+})

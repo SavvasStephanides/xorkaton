@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 
 function App() {
 
-  const [game, setGame] = useState(new Game("ΠΥΡΟΙ"))
+  const [game, setGame] = useState(new Game("ΦΙΛΙΑ"))
   const [dialogVisibility, setDialogVisibility] = useState("HIDDEN")
   const [dialogMessage, setDialogMessage] = useState("")
 
@@ -46,8 +46,13 @@ function App() {
     <div className="App">
       <div id="game">
         <Header />
-
+      
         <Board game={game} />
+
+        {game.gameIsOver() && <button onClick={() => {
+        
+        navigator.clipboard.writeText(game.getBoardAsSquares())
+        }}>Share</button>}
 
         <Keyboard
           visibility={game.gameIsOver() ? "HIDDEN" : "VISIBLE"}
