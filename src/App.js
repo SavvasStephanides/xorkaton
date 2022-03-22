@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 
 function App() {
 
-  const [game, setGame] = useState(new Game("ΦΙΛΙΑ"))
+  const [game, setGame] = useState(new Game("ΠΥΡΟΙ"))
   const [dialogVisibility, setDialogVisibility] = useState("HIDDEN")
   const [dialogMessage, setDialogMessage] = useState("")
 
