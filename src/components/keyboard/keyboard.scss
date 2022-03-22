@@ -16,5 +16,9 @@
         border: 1px solid black;
         color: black;
         font-size: 15px;
+
+        &.special-key{
+            width: 90px;
+        }
     }
 }

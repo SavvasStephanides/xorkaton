@@ -25,8 +25,8 @@ function Keyboard({
             ))
         }
         <div className="keyboard-row">
-            <button className="keyboard-key" onClick={keyboardEnterPressEvent}>ENTER</button>
-            <button className="keyboard-key" onClick={keyboardBackspacePressEvent}>BACK</button>
+            <button className="keyboard-key special-key" onClick={keyboardEnterPressEvent}>ENTER</button>
+            <button className="keyboard-key special-key" onClick={keyboardBackspacePressEvent}>BACK</button>
         </div>
     </div>
     
