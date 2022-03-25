@@ -98,21 +98,31 @@ function Game(word){
 
     }
 
-    this.gameIsOver = () => {
+    this.getGameStatus = () => {
         if(this.cursor.row === this.board.length){
-            return true
+            return "FAIL"
         }
 
         let rowResults = this.board[this.cursor.row].map((square) => square.result)
         if(rowResults.filter((result) => result === "CORRECT").length === rowResults.length){
-            return true
+            return "SUCCESS"
         }
-        
-        return false
+
+        if(this.cursor.row === this.board.length){
+            return "FAIL"
+        }
+
+        return "INPROGRESS"
     }
 
-    this.getBoardAsSquares = () => {
-        let heading = `Χωρκle 1 ${this.cursor.row+1}/5`
+    this.gameIsOver = () => {
+        return ["SUCCESS", "FAIL"].includes(this.getGameStatus())
+    }
+
+    this.getGameAsString = () => {
+        let score = this.getGameStatus() === "FAIL" ? "X" : this.cursor.row+1
+
+        let heading = `Χωρκle 1 ${score}/5`
         
         let filledRows = this.board.slice(0, this.cursor.row + 1)
 

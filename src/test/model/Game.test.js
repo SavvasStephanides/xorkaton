@@ -229,6 +229,7 @@ test("checkWord moves cursor to next row if guess is incorrect", () => {
 
 test("gameIsOver returns true if all letters of current row are correct", () => {
     let game = new Game("ABCD")
+
     game.wordList.push({word: "ABCD"})
 
     game.addLetter("A")
@@ -270,7 +271,63 @@ test("gameIsOver returns true when row cursor is at the end of the board", () =>
     expect(game.gameIsOver()).toBe(true)
 })
 
-test("getBoardAsSquares() returns shareable string", () => {
+test("getGameStatus returns SUCCESS when all squares in current row are correct", () => {
+    let game = new Game("ABC")
+
+    game.wordList.push({word: "ABC"})
+
+    game.addLetter("A")
+    game.addLetter("B")
+    game.addLetter("C")
+    game.checkWord()
+
+    expect(game.getGameStatus()).toBe("SUCCESS")
+
+})
+
+test("getGameStatus returns FAIL when cursor is at end of board and all attempts have failed", () => {
+    let game = new Game("ABC")
+
+    game.wordList.push({word: "ABC"})
+    game.wordList.push({word: "ABD"})
+
+    for(let i = 0 ; i < game.board.length; i++){
+        game.addLetter("A")
+        game.addLetter("B")
+        game.addLetter("D")
+        
+        game.checkWord()
+    }
+
+    let status = game.getGameStatus()
+
+    expect(status).toBe("FAIL")
+})
+
+test("getGameStatus returns SUCCESS when cursor is at end of board and last attempt is successful", () => {
+    let game = new Game("ABC")
+
+    game.wordList.push({word: "ABC"})
+    game.wordList.push({word: "ABD"})
+
+    for(let i = 0 ; i < game.board.length-1; i++){
+        game.addLetter("A")
+        game.addLetter("B")
+        game.addLetter("D")
+        
+        game.checkWord()
+    }
+
+    game.addLetter("A")
+    game.addLetter("B")
+    game.addLetter("C")
+    
+    game.checkWord()
+
+    expect(game.getGameStatus()).toBe("SUCCESS")
+})
+
+test("getGameAsString() returns shareable string", () => {
     let game = new Game("ABC")
 
     game.wordList.push({word: "ABC"})
@@ -294,7 +351,7 @@ test("getBoardAsSquares() returns shareable string", () => {
 
     expect(game.gameIsOver()).toBe(true)
 
-    expect(game.getBoardAsSquares()).toBe(`Χωρκle 1 3/5
+    expect(game.getGameAsString()).toBe(`Χωρκle 1 3/5
 
 🟩🟩⬛️
 🟩🟩⬛️
