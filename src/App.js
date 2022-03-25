@@ -53,8 +53,16 @@ function App() {
         <Board game={game} />
 
         {game.gameIsOver() && <button onClick={() => {
+        if(navigator.share){
+          navigator.share({
+            text: game.getBoardAsSquares()
+          })
+        }
+        else{
+          navigator.clipboard.writeText(game.getBoardAsSquares())
+          showMessageOnDialog("Copied to clipboard")
+        }
         
-        navigator.clipboard.writeText(game.getBoardAsSquares())
         }}>Share</button>}
 
         <Keyboard
