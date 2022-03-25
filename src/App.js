@@ -1,14 +1,17 @@
 import Board from "./components/board/board";
 import Header from "./components/header";
 import Game from "./model/Game"
+import WordList from "./model/WordList"
 import Keyboard from "./components/keyboard/keyboard"
 import Dialog from "./components/dialog/dialog"
 
 import { useEffect, useState } from "react";
 
 function App() {
+  const wordList = new WordList()
+  let wordOfTheDay = wordList.getTodaysWord()
 
-  const [game, setGame] = useState(new Game("ΠΥΡΟΙ"))
+  const [game, setGame] = useState(new Game(wordOfTheDay))
   const [dialogVisibility, setDialogVisibility] = useState("HIDDEN")
   const [dialogMessage, setDialogMessage] = useState("")
 

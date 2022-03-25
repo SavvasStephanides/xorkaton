@@ -49,7 +49,7 @@ function Game(word){
         let inputCharacters = this.board[this.cursor.row].map((square) => square.letter)
         let input = inputCharacters.join("")
 
-        if(!this.wordList.includes(input)){
+        if(!this.wordList.map(word => word.word).includes(input)){
             throw new Error("Word not in word list")
         }
 

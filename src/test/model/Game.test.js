@@ -147,8 +147,8 @@ test("getResultForCurrentRow highlights wrong position once", () => {
 
 test("getResultForCurrentRow works for multiple instances of a letter", () => {
     let game = new Game("TACIT")
-    game.wordList.push("TAINT")
-    game.wordList.push("GAMBO")
+    game.wordList.push({word: "TAINT"})
+    game.wordList.push({word: "GAMBO"})
 
     game.addLetter("T")
     game.addLetter("A")
@@ -170,7 +170,7 @@ test("getResultForCurrentRow works for multiple instances of a letter", () => {
 test("getResultForCurrentRow gets correct results", () => {
     let game = new Game("ΛΥΣΗ")
 
-    game.wordList.push("ΛΥΣΣ")
+    game.wordList.push({word: "ΛΥΣΣ"})
 
     game.addLetter("Λ")
     game.addLetter("Υ")
@@ -188,7 +188,7 @@ test("getResultForCurrentRow gets correct results", () => {
 test("checkWord populates the board with correct results", () => {
     let game = new Game("ΛΥΣΗ")
 
-    game.wordList.push("ΛΥΣΣ")
+    game.wordList.push({word: "ΛΥΣΣ"})
 
     game.addLetter("Λ")
     game.addLetter("Υ")
@@ -213,7 +213,7 @@ test("checkWord populates the board with correct results", () => {
 test("checkWord moves cursor to next row if guess is incorrect", () => {
     let game = new Game("ΛΥΣΗ")
 
-    game.wordList.push("ΛΥΣΣ")
+    game.wordList.push({word: "ΛΥΣΣ"})
 
 
     game.addLetter("Λ")
@@ -229,7 +229,7 @@ test("checkWord moves cursor to next row if guess is incorrect", () => {
 
 test("gameIsOver returns true if all letters of current row are correct", () => {
     let game = new Game("ABCD")
-    game.wordList.push("ABCD")
+    game.wordList.push({word: "ABCD"})
 
     game.addLetter("A")
     game.addLetter("B")
@@ -243,8 +243,8 @@ test("gameIsOver returns true if all letters of current row are correct", () => 
 
 test("gameIsOver returns false for wrong guess", () => {
     let game = new Game("ABCD")
-    game.wordList.push("ABCD")
-    game.wordList.push("ABCE")
+    game.wordList.push({word: "ABCD"})
+    game.wordList.push({word: "ABCE"})
 
     game.addLetter("A")
     game.addLetter("B")
@@ -258,8 +258,7 @@ test("gameIsOver returns false for wrong guess", () => {
 
 test("gameIsOver returns true when row cursor is at the end of the board", () => {
     let game = new Game("AB")
-    game.wordList.push("AC")
-    game.wordList.push("AC")
+    game.wordList.push({word: "AC"})
     
     for(let i = 0 ; i < game.board.length; i++){
         game.addLetter("A")
@@ -274,9 +273,9 @@ test("gameIsOver returns true when row cursor is at the end of the board", () =>
 test("getBoardAsSquares() returns shareable string", () => {
     let game = new Game("ABC")
 
-    game.wordList.push("ABC")
-    game.wordList.push("ABD")
-    game.wordList.push("ABE")
+    game.wordList.push({word: "ABC"})
+    game.wordList.push({word: "ABD"})
+    game.wordList.push({word: "ABE"})
 
     game.addLetter("A")
     game.addLetter("B")
