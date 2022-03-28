@@ -11,7 +11,20 @@ function App() {
   const wordList = new WordList()
   let wordOfTheDay = wordList.getTodaysWord()
 
-  const [game, setGame] = useState(new Game(wordOfTheDay))
+  let currentGame;
+
+  let savedGame = localStorage.getItem("xwrkle-game")
+  if(savedGame !== null){
+    let gameFromLocalStorage = JSON.parse(savedGame)
+    currentGame = new Game(wordOfTheDay)
+    currentGame.board = gameFromLocalStorage.board
+    currentGame.cursor = gameFromLocalStorage.cursor
+  }
+  else{
+    currentGame = new Game(wordOfTheDay)
+  }
+
+  const [game, setGame] = useState(currentGame)
   const [dialogVisibility, setDialogVisibility] = useState("HIDDEN")
   const [dialogMessage, setDialogMessage] = useState("")
 
@@ -47,12 +60,15 @@ function App() {
 
   return (
     <div className="App">
+      {
+        localStorage.setItem("xwrkle-game", JSON.stringify(game))
+      }
       <div id="game">
         <Header />
       
-        <Board game={game} />
+        {game && <Board game={game} />}
 
-        {game.getGameStatus() === "FAIL" && <div style={
+        {game && game.getGameStatus() === "FAIL" && <div style={
           {
             "textAlign": "center"
           }
