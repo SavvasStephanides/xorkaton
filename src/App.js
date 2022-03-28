@@ -14,11 +14,18 @@ function App() {
   let currentGame;
 
   let savedGame = localStorage.getItem("xwrkle-game")
-  if(savedGame !== null){
+  console.log(savedGame);
+  if(savedGame){
     let gameFromLocalStorage = JSON.parse(savedGame)
     currentGame = new Game(wordOfTheDay)
-    currentGame.board = gameFromLocalStorage.board
-    currentGame.cursor = gameFromLocalStorage.cursor
+    if(gameFromLocalStorage.word === wordOfTheDay){
+      currentGame.board = gameFromLocalStorage.board
+      currentGame.cursor = gameFromLocalStorage.cursor
+    }
+    else{
+      currentGame = new Game(wordOfTheDay)
+    }
+    
   }
   else{
     currentGame = new Game(wordOfTheDay)
