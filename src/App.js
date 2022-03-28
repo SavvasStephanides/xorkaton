@@ -52,6 +52,14 @@ function App() {
       
         <Board game={game} />
 
+        {game.getGameStatus() === "FAIL" && <div style={
+          {
+            "textAlign": "center"
+          }
+        }>
+          The word is: {game.word}
+        </div>}
+
         {game.gameIsOver() && <button onClick={() => {
         if(navigator.share){
           navigator.share({
@@ -64,6 +72,8 @@ function App() {
         }
         
         }}>Share</button>}
+
+        
 
         <Keyboard
           visibility={game.gameIsOver() ? "HIDDEN" : "VISIBLE"}
