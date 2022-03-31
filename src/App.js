@@ -14,7 +14,6 @@ function App() {
   let currentGame;
 
   let savedGame = localStorage.getItem("xwrkle-game")
-  console.log(savedGame);
   if(savedGame){
     let gameFromLocalStorage = JSON.parse(savedGame)
     currentGame = new Game(wordOfTheDay)
@@ -70,6 +69,9 @@ function App() {
       {
         localStorage.setItem("xwrkle-game", JSON.stringify(game))
       }
+      {
+        console.log(game)
+      }
       <div id="game">
         <Header />
       
@@ -99,6 +101,7 @@ function App() {
         
 
         <Keyboard
+          flags={game.getFlagsForLetters()}
           visibility={game.gameIsOver() ? "HIDDEN" : "VISIBLE"}
           keyboardPressLetterEvent={keyboardPressLetterEvent}
           keyboardEnterPressEvent={keyboardEnterPressEvent}

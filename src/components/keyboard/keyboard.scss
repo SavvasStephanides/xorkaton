@@ -20,5 +20,18 @@
         &.special-key{
             width: 90px;
         }
+
+        &[flag='CORRECT']{
+            background-color: darkgreen;
+            color: white;
+        }
+        &[flag='WRONG']{
+            background-color: #333;
+            color: white;
+        }
+        &[flag='WRONGPOSITION']{
+            background-color: goldenrod;
+            color: white;
+        }
     }
 }

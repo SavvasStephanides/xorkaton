@@ -357,3 +357,59 @@ test("getGameAsString() returns shareable string", () => {
 🟩🟩⬛️
 🟩🟩🟩`)
 })
+
+test("Can run getFlagsForLetters()", () => {
+    let game = new Game("ABCD")
+    game.getFlagsForLetters()
+})
+
+test("getFlagsForLetters() returns correct array of letter-flag pairs for 1 row", () => {
+    let game = new Game("ABCD")
+    game.wordList.push({word: "ABDE"})
+
+    game.addLetter("A")
+    game.addLetter("B")
+    game.addLetter("D")
+    game.addLetter("E")
+
+    game.checkWord()
+
+    let expectedFlagsForLetters = {
+        "A": "CORRECT",
+        "B": "CORRECT",
+        "D": "WRONGPOSITION",
+        "E": "WRONG"
+    }
+
+    let flagsForLetters = game.getFlagsForLetters()
+
+    expect(flagsForLetters).toEqual(expectedFlagsForLetters)
+})
+
+test("getFlagsForLetters() returns correct array of letter-flag pairs for 2 rows", () => {
+    let game = new Game("ABCD")
+    game.wordList.push({word: "ABDE"})
+
+    game.addLetter("A")
+    game.addLetter("B")
+    game.addLetter("D")
+    game.addLetter("E")
+    game.checkWord()
+
+    game.addLetter("A")
+    game.addLetter("B")
+    game.addLetter("D")
+    game.addLetter("E")
+    game.checkWord()
+    
+    let expectedFlagsForLetters = {
+        "A": "CORRECT",
+        "B": "CORRECT",
+        "D": "WRONGPOSITION",
+        "E": "WRONG"
+    }
+
+    let flagsForLetters = game.getFlagsForLetters()
+
+    expect(flagsForLetters).toEqual(expectedFlagsForLetters)
+})

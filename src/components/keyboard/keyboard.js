@@ -1,5 +1,6 @@
 import "./keyboard.scss"
 function Keyboard({
+    flags,
     visibility,
     keyboardPressLetterEvent, 
     keyboardEnterPressEvent, 
@@ -17,7 +18,7 @@ function Keyboard({
                 <div className="keyboard-row">
                     {
                     keyRow.split(" ").map((keyButton) => (
-                    <button className="keyboard-key" onClick={() => keyboardPressLetterEvent(keyButton)}>
+                    <button className="keyboard-key" flag={flags[keyButton]} onClick={() => keyboardPressLetterEvent(keyButton)}>
                         {keyButton}
                     </button>)
                     )}

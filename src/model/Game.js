@@ -141,6 +141,21 @@ function Game(word){
         
         return boardAsString
     }
+
+    this.getFlagsForLetters = () => {
+        let pairs = new Set()
+        this.board.forEach(row => {
+            row.forEach((square) => {
+                if(square.letter !== "" && square.result !== ""){
+                    pairs[square.letter] = square.result
+                }
+            })
+        })
+
+        pairs = {...pairs}
+
+        return pairs
+    }
 }
 
 export default Game
