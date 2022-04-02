@@ -147,7 +147,19 @@ function Game(word){
         this.board.forEach(row => {
             row.forEach((square) => {
                 if(square.letter !== "" && square.result !== ""){
-                    pairs[square.letter] = square.result
+                    let flags = {
+                        "WRONG": 1,
+                        "WRONGPOSITION": 2,
+                        "CORRECT": 3
+                    }
+
+                    if(pairs[square.letter] === undefined){
+                        pairs[square.letter] = square.result
+                    }
+                    else if(flags[square.result] > flags[pairs[square.letter]]){
+                        pairs[square.letter] = square.result
+                    }
+
                 }
             })
         })
