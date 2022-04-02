@@ -69,9 +69,6 @@ function App() {
       {
         localStorage.setItem("xwrkle-game", JSON.stringify(game))
       }
-      {
-        console.log(game)
-      }
       <div id="game">
         <Header />
       
