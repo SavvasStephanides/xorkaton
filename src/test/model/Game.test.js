@@ -351,7 +351,7 @@ test("getGameAsString() returns shareable string", () => {
 
     expect(game.gameIsOver()).toBe(true)
 
-    expect(game.getGameAsString()).toBe(`Χωρκle 1 3/5
+    expect(game.getGameAsString()).toBe(`Χωρκle 1 3/6
 
 🟩🟩⬛️
 🟩🟩⬛️
