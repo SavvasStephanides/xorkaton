@@ -7,7 +7,7 @@ function Game(word){
 
     this.board = []
 
-    for(let row = 0 ; row < 5 ; row++){
+    for(let row = 0 ; row < 6 ; row++){
         this.board[row] = []
         for(let square = 0 ; square < word.length ; square++){
             this.board[row][square] = new Square("", "")

@@ -5,9 +5,9 @@ test("Game object contains word", () => {
     expect(game.word).toBe("MYWORD")
 })
 
-test("Game board contains 5 rows", () => {
+test("Game board contains 6 rows", () => {
     let game = new Game("ATHIENOU")
-    expect(game.board.length).toBe(5)
+    expect(game.board.length).toBe(6)
 })
 
 test("Each row contains empty squares the length of the word", () => {
