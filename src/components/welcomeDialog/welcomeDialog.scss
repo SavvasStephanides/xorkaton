@@ -1,0 +1,40 @@
+#welcome-dialog{
+    position: fixed;
+    left: 21px;
+    right: 21px;
+    top: 21px;
+    bottom: 21px;
+    width: calc(100% - 72px);
+    height: calc(100% - 72px);
+    background-color: white;
+    outline: 3px solid black;
+    padding: 15px;
+
+    display: block;
+
+    &[visibility="0"]{
+        display: none;
+    }
+
+    p,h2,hr,.tiles{
+        margin-top: 15px;
+    }
+
+    .tiles{
+        display: flex;
+
+        .tile{
+
+            outline: 2px solid black;
+            padding: 9px;
+            font-size: 21px;
+            margin-left: 9px;
+        }
+    }
+
+    .close-button{
+        display: absolute;
+        right: 0;
+        top: 0;
+    }
+}

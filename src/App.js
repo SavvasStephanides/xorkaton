@@ -4,6 +4,7 @@ import Game from "./model/Game"
 import WordList from "./model/WordList"
 import Keyboard from "./components/keyboard/keyboard"
 import Dialog from "./components/dialog/dialog"
+import WelcomeDialog from "./components/welcomeDialog/welcomeDialog";
 
 import { useEffect, useState } from "react";
 
@@ -106,6 +107,8 @@ function App() {
           
       </div>
       <Dialog visibility={dialogVisibility} message={dialogMessage} />
+
+      <WelcomeDialog visibility={localStorage.getItem("xwrkle-welcome-visibility")}/>
 
     </div>
   )
