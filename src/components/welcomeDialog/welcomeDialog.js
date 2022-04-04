@@ -27,9 +27,9 @@ function WelcomeDialog({visibility}){
 
             <div className="tiles">
                 <div className="tile">Π</div>
-                <div className="tile">Υ</div>
+                <div className="tile" style={{backgroundColor: "#daa520", color: "white"}}>Υ</div>
                 <div className="tile">Ρ</div>
-                <div className="tile" style={{backgroundColor: "#daa520", color: "white"}}>Ο</div>
+                <div className="tile">Ο</div>
                 <div className="tile">Ι</div>
             </div>
 
