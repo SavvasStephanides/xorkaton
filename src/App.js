@@ -17,18 +17,18 @@ function App() {
   let savedGame = localStorage.getItem("xwrkle-game")
   if(savedGame){
     let gameFromLocalStorage = JSON.parse(savedGame)
-    currentGame = new Game(wordOfTheDay)
-    if(gameFromLocalStorage.word === wordOfTheDay){
+    currentGame = new Game(wordOfTheDay.word, wordOfTheDay.id)
+    if(gameFromLocalStorage.word === wordOfTheDay.word){
       currentGame.board = gameFromLocalStorage.board
       currentGame.cursor = gameFromLocalStorage.cursor
     }
     else{
-      currentGame = new Game(wordOfTheDay)
+      currentGame = new Game(wordOfTheDay.word, wordOfTheDay.id)
     }
     
   }
   else{
-    currentGame = new Game(wordOfTheDay)
+    currentGame = new Game(wordOfTheDay.word, wordOfTheDay.id)
   }
 
   const [game, setGame] = useState(currentGame)

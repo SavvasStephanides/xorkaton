@@ -1,7 +1,8 @@
 import Square from "./Square"
 
-function Game(word){
+function Game(word, id){
     this.word = word
+    this.id = id
 
     this.wordList = require("./wordlist.json")
 
@@ -122,7 +123,7 @@ function Game(word){
     this.getGameAsString = () => {
         let score = this.getGameStatus() === "FAIL" ? "X" : this.cursor.row+1
 
-        let heading = `Χωρκle 1 ${score}/6`
+        let heading = `Χωρκle ${this.id} ${score}/6`
         
         let filledRows = this.board.slice(0, this.cursor.row + 1)
 

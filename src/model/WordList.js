@@ -8,7 +8,7 @@ function WordList(){
             return dateForWord.getDate() === today.getDate()
                 && dateForWord.getMonth() === today.getMonth()
                 && dateForWord.getFullYear() === today.getFullYear()
-        }).word
+        })
     }
 
     this.wordIsInList = (word) => {
