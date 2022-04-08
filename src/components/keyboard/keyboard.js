@@ -26,8 +26,8 @@ function Keyboard({
             ))
         }
         <div className="keyboard-row">
-            <button className="keyboard-key special-key" onClick={keyboardEnterPressEvent}>ENTER</button>
-            <button className="keyboard-key special-key" onClick={keyboardBackspacePressEvent}>BACK</button>
+            <button className="keyboard-key special-key" onClick={keyboardEnterPressEvent}>Εισαγωγή</button>
+            <button className="keyboard-key special-key" onClick={keyboardBackspacePressEvent}>Σβήσιμο</button>
         </div>
     </div>
     

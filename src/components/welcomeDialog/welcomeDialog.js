@@ -7,13 +7,12 @@ function WelcomeDialog({visibility}){
                 document.querySelector("#welcome-dialog").setAttribute("visibility", 0)
                 localStorage.setItem("xwrkle-welcome-visibility", 0)
             }}>X</button>
-            <p>Guess the <b>Cypriot village</b> or city in six tries.</p>
-            <p>Each guess must be an existing village or city in Cyprus</p>
-            <p>After each guess, the colour of the tiles will change to show how close your guess was to the word</p>
-            
+            <p>Μάντεψε το <b>Κυπριακό χωρκό ή πόλη</b> σε έξι προσπάθειες.</p>
+            <p>Κάθε προσπάθεια πρέπει ναν χωρκό ή πόλη που υπάρχει στην Κύπρο.</p>
+            <p>Μετά που κάθε προσπάθεια, τα χρώματα στα κουτούθκια αλλάσσουν για να δείκσουν πόσο εκόντεψες στη λέξη.</p>
             <hr/>
 
-            <h2>Examples</h2>
+            <h2>Παραδείγματα</h2>
 
             <div className="tiles">
                 <div className="tile">Π</div>
@@ -23,7 +22,7 @@ function WelcomeDialog({visibility}){
                 <div className="tile">Ι</div>
             </div>
 
-            <p>The letter O is in the word and in the correct spot</p>
+            <p>Το γράμμα Ο εν μέσ' τη λέξη, στη σωστή θέση</p>
 
             <div className="tiles">
                 <div className="tile">Π</div>
@@ -33,7 +32,7 @@ function WelcomeDialog({visibility}){
                 <div className="tile">Ι</div>
             </div>
 
-            <p>The letter Υ is in the word but in the wrong spot</p>
+            <p>Το γράμμα Υ εν μέσ' τη λέξη, αλλά στη λάθος θέση</p>
 
             <div className="tiles">
                 <div className="tile" style={{backgroundColor: "#333", color: "white"}}>Π</div>
@@ -43,11 +42,12 @@ function WelcomeDialog({visibility}){
                 <div className="tile">Ι</div>
             </div>
 
-            <p>The letter Π doesn't exist in the word.</p>
+            <p>Το γράμμα Π έννεν μες τη λέξη</p>
+
 
             <hr/>
 
-            <p><b>A new village will be available each day!</b></p>
+            <p><b>Τζενούρκο χωρκό κάθε μέρα!</b></p>
 
 
         </div>

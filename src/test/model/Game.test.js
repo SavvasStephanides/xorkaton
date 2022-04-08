@@ -51,7 +51,7 @@ test("addLetter throws Exception when cursor at end of row", () => {
     game.addLetter("B")
     game.addLetter("C")
 
-    expect(() => game.addLetter("A")).toThrow("Cursor at end of row")
+    expect(() => game.addLetter("A")).toThrow("CURSOR_AT_END_OF_ROW")
 })
 
 test("removeLetterBeforeCursor removes the letter before the cursor", () => {
@@ -85,14 +85,14 @@ test("removeLetterBeforeCursor throws error if square cursor is at 0", () => {
     game.removeLetterBeforeCursor()
     game.removeLetterBeforeCursor()
 
-    expect(() => game.removeLetterBeforeCursor()).toThrow("No more letters to erase")
+    expect(() => game.removeLetterBeforeCursor()).toThrow("NO_LETTERS_IN_ROW")
 })
 
 test("checkWord throws exception if cursor not at end", () => {
     let game = new Game("ABC")
     game.addLetter("A")
 
-    expect(() => game.checkWord()).toThrow("Cursor not at end of row")
+    expect(() => game.checkWord()).toThrow("CURSOR_NOT_AT_END")
 })
 
 test("checkWord does not throw exception if cursor at end", () => {
@@ -101,7 +101,7 @@ test("checkWord does not throw exception if cursor at end", () => {
     game.addLetter("A")
     game.addLetter("A")
 
-    expect(() => game.checkWord()).not.toThrow("Cursor not at end of row")
+    expect(() => game.checkWord()).not.toThrow("CURSOR_NOT_AT_END")
 })
 
 test("checkWord throws exception if word not in word list", () => {
@@ -112,7 +112,7 @@ test("checkWord throws exception if word not in word list", () => {
     game.addLetter("Ν")
     game.addLetter("Η")
 
-    expect(() => game.checkWord()).toThrow("Word not in word list")
+    expect(() => game.checkWord()).toThrow("WORD_NOT_IN_LIST")
 })
 
 test("checkWord does not throw exception if word in word list", () => {
@@ -123,7 +123,7 @@ test("checkWord does not throw exception if word in word list", () => {
     game.addLetter("Ν")
     game.addLetter("Α")
 
-    expect(() => game.checkWord()).not.toThrow("Word not in word list")
+    expect(() => game.checkWord()).not.toThrow("WORD_NOT_IN_LIST")
 })
 
 test("getResultForCurrentRow highlights wrong position once", () => {
@@ -328,11 +328,11 @@ test("getGameStatus returns SUCCESS when cursor is at end of board and last atte
 })
 
 test("getGameAsString() returns shareable string", () => {
-    let game = new Game("ABC")
+    let game = new Game("ABC", 12)
 
-    game.wordList.push({word: "ABC"})
-    game.wordList.push({word: "ABD"})
-    game.wordList.push({word: "ABE"})
+    game.wordList.push({word: "ABC", id: 12})
+    game.wordList.push({word: "ABD", id: 13})
+    game.wordList.push({word: "ABE", id: 14})
 
     game.addLetter("A")
     game.addLetter("B")
@@ -351,7 +351,7 @@ test("getGameAsString() returns shareable string", () => {
 
     expect(game.gameIsOver()).toBe(true)
 
-    expect(game.getGameAsString()).toBe(`Χωρκle 1 3/6
+    expect(game.getGameAsString()).toBe(`Χωρκle 12 3/6
 
 🟩🟩⬛️
 🟩🟩⬛️

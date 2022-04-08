@@ -7,7 +7,8 @@ test("getTodaysWord returns todays word", () => {
     sinon.replace(wordList, 'getAllWords', sinon.fake.returns(require("./mockwordlist.json")))
     sinon.replace(Date, 'now', sinon.fake.returns(new Date("2000/01/01")))
 
-    expect(wordList.getTodaysWord()).toBe("ΠΥΡΟΙ")
+    expect(wordList.getTodaysWord().word).toBe("ΠΥΡΟΙ")
+    expect(wordList.getTodaysWord().id).toBe(1)
 
     sinon.reset();
 

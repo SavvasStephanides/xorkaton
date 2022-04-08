@@ -5,6 +5,7 @@ import WordList from "./model/WordList"
 import Keyboard from "./components/keyboard/keyboard"
 import Dialog from "./components/dialog/dialog"
 import WelcomeDialog from "./components/welcomeDialog/welcomeDialog";
+import errorStrings from "./errorStrings.json"
 
 import { useEffect, useState } from "react";
 
@@ -46,7 +47,7 @@ function App() {
           game.checkWord()
         }
         catch(e){
-          showMessageOnDialog(e.message)
+          showMessageOnDialog(errorStrings[e.message])
         }
         
       }
@@ -124,7 +125,7 @@ function App() {
       setGame({ ...game })
     }
     catch(e){
-      showMessageOnDialog(e.message)
+      showMessageOnDialog(errorStrings[e.message])
     }
   }
 
