@@ -95,7 +95,7 @@ function App() {
           showMessageOnDialog("Copied to clipboard")
         }
         
-        }}>Share</button>}
+        }}>Κοινοποίηση</button>}
 
         
 
