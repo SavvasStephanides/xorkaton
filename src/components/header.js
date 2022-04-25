@@ -14,7 +14,7 @@ function Header(){
 
     return (
         <header style={style.header}>
-            <img src="/logo.png" alt="" style={style.logo}/>
+            <img src={`${process.env.PUBLIC_URL}/logo.png`} alt="" style={style.logo}/>
         </header>
     )
 }
