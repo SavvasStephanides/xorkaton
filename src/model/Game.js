@@ -123,7 +123,7 @@ function Game(word, id){
     this.getGameAsString = () => {
         let score = this.getGameStatus() === "FAIL" ? "X" : this.cursor.row+1
 
-        let heading = `Χωρκle ${this.id} ${score}/6`
+        let heading = `Χώρκατον ${this.id} ${score}/6`
         
         let filledRows = this.board.slice(0, this.cursor.row + 1)
 

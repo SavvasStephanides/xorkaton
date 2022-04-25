@@ -6,9 +6,8 @@ function Header(){
         },
         logo: {
             display: "block",
-            height: "60px",
+            height: "72px",
             margin: "auto",
-            transform: "rotate(-6deg)",
             marginTop: "12px"
         }
     }
@@ -16,7 +15,6 @@ function Header(){
     return (
         <header style={style.header}>
             <img src="/logo.png" alt="" style={style.logo}/>
-          {/* <div className="site-name" style={style.siteName}>Χωρκle</div> */}
         </header>
     )
 }
