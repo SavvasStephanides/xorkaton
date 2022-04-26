@@ -32,7 +32,7 @@ jobs:
       - name: Start deployment
         run: |
           yarn
-          yarn build
+          CI=false yarn build
           mv build /tmp
           cd /tmp
           git clone https://github.com/SavvasStephanides/savvas.git
