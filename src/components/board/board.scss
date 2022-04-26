@@ -15,6 +15,7 @@ $board-square-size: 45px;
             justify-content: center;
             align-items: center;
             font-weight: bold;
+            background-color: #fff;
         }
 
         .board-row-square[flag="CORRECT"]{
