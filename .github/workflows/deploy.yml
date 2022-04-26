@@ -31,7 +31,8 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Start deployment
         run: |
-          npm run build
+          yarn
+          yarn build
           mv build /tmp
           cd /tmp
           git clone https://github.com/SavvasStephanides/savvas.git
