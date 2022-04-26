@@ -39,4 +39,7 @@ jobs:
           cd savvas
           rm -rf ./static/xorkaton
           mv /tmp/build ./static/xorkaton
-          ls -l ./static/xorkaton
+          git status
+          git add -A
+          git commit -m "Automated: Update Xorkaton"
+          git push --all -f https://${{ secrets.GH_TOKEN }}@github.com/SavvasStephanides/savvas.git
