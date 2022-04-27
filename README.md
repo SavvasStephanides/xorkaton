@@ -14,7 +14,7 @@ You will need:
 1. Clone this repository
 
 ```sh
-https://github.com/SavvasStephanides/xorkaton.git
+git clone https://github.com/SavvasStephanides/xorkaton.git
 cd xorkaton
 ```
 
