@@ -89,8 +89,14 @@ function App() {
             "textAlign": "center"
           }
         }>
-          Το σωστό χωρκόν: {game.word}
+          Το σωστό χωρκόν: <span style={{fontWeight: "bold"}}>{game.word}</span>
         </div>}
+
+        
+        <div style={{"marginTop": "15px"}}>
+          <div>Επόμενο χωρκό σε:</div>
+          <div style={{fontSize: "30px", fontWeight: "bold"}}>{nextWordTimer}</div>
+        </div>
 
         <button onClick={() => {
         if(navigator.share){
@@ -105,9 +111,10 @@ function App() {
         
         }} style={{"backgroundColor": "darkgreen", "color": "white", "padding": "15px", "fontSize": "15px", "marginTop": "15px"}}>Κοινοποίησε το σκόρ σου!</button>
         
-        <div style={{"marginTop": "30px"}}>Επόμενο χωρκό σε: {nextWordTimer}</div>
         
         </div>}
+
+        
 
         
 
