@@ -35,6 +35,7 @@ function App() {
   const [game, setGame] = useState(currentGame)
   const [dialogVisibility, setDialogVisibility] = useState("HIDDEN")
   const [dialogMessage, setDialogMessage] = useState("")
+  const [nextWordTimer, setNextWordTimer] = useState("")
 
   useEffect(() => {
     document.body.addEventListener("keyup", (e) => {
@@ -66,6 +67,11 @@ function App() {
     })
   }, [])
 
+  setTimeout(() => {
+    let today = new Date(new Date(Date.now()).toLocaleString("en-US", {timeZone: "EET"}))
+    setNextWordTimer(`${23 - today.getHours()}:${59 - today.getMinutes()}:${59-today.getSeconds()}`)
+  }, 1000)
+
   return (
     <div className="App">
       {
@@ -76,15 +82,17 @@ function App() {
       
         {game && <Board game={game} />}
 
+        {game.gameIsOver() && <div className="postgame" style={{textAlign: "center", padding: "30px"}}>
+
         {game && game.getGameStatus() === "FAIL" && <div style={
           {
             "textAlign": "center"
           }
         }>
-          The word is: {game.word}
+          Το σωστό χωρκόν: {game.word}
         </div>}
 
-        {game.gameIsOver() && <button onClick={() => {
+        <button onClick={() => {
         if(navigator.share){
           navigator.share({
             text: game.getGameAsString()
@@ -92,10 +100,14 @@ function App() {
         }
         else{
           navigator.clipboard.writeText(game.getGameAsString())
-          showMessageOnDialog("Copied to clipboard")
+          showMessageOnDialog("Εμπίκεν στο clipboard")
         }
         
-        }}>Κοινοποίηση</button>}
+        }} style={{"backgroundColor": "darkgreen", "color": "white", "padding": "15px", "fontSize": "15px", "marginTop": "15px"}}>Κοινοποίησε το σκόρ σου!</button>
+        
+        <div style={{"marginTop": "30px"}}>Επόμενο χωρκό σε: {nextWordTimer}</div>
+        
+        </div>}
 
         
 
