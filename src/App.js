@@ -69,7 +69,17 @@ function App() {
 
   setTimeout(() => {
     let today = new Date(new Date(Date.now()).toLocaleString("en-US", {timeZone: "EET"}))
-    setNextWordTimer(`${23 - today.getHours()}:${59 - today.getMinutes()}:${59-today.getSeconds()}`)
+    
+    let hours = 23 - today.getHours()
+    let minutes = 59 - today.getMinutes()
+    let seconds = 59-today.getSeconds()
+
+    let hoursDisplay = hours >= 10 ? hours : `0${hours}`
+    let minutesDisplay = minutes >= 10 ? minutes : `0${minutes}`
+    let secondsDisplay = seconds >= 10 ? seconds : `0${seconds}`
+
+    setNextWordTimer(`${hoursDisplay}:${minutesDisplay}:${secondsDisplay}`)
+    
   }, 1000)
 
   return (
