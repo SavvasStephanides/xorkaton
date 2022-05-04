@@ -27,8 +27,12 @@ jobs:
       
       - name: Setup Node.js environment
         uses: actions/setup-node@v3.1.1
+        
+      - name: Run tests
+        run: |
+          yarn
+          yarn test
 
-      # Runs a set of commands using the runners shell
       - name: Start deployment
         run: |
           yarn
