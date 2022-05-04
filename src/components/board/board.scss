@@ -1,4 +1,4 @@
-$board-square-size: 45px;
+$board-square-size: 51px;
 
 #board{
     margin: 0 auto;
@@ -10,7 +10,7 @@ $board-square-size: 45px;
             width: $board-square-size;
             height: $board-square-size;
             margin: 3px;
-            font-size: 24px;
+            font-size: 30px;
             display: flex;
             justify-content: center;
             align-items: center;
