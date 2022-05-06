@@ -36,27 +36,29 @@ function NextWordTimer(){
       }, 1000)
 
 
-    return(<div style={{"marginTop": "15px"}}>
+    return(<div className="next-word-timer">
     <div>Επόμενο χωρκό σε:</div>
-    <div style={{fontSize: "30px", fontWeight: "bold"}}>{nextWordTimer}</div>
+    <div className="timer">{nextWordTimer}</div>
   </div>)
 }
 
 function ShareButton({shareText, showMessageOnDialog}){
-    return(<button onClick={() => {
-        if(navigator.share){
-          navigator.share({
-            text: shareText
-          })
-        }
-        else{
-          navigator.clipboard.writeText(shareText)
-          showMessageOnDialog("Εμπίκεν στο clipboard")
-        }
-        
-        }} style={{"backgroundColor": "darkgreen", "color": "white", "padding": "15px", "fontSize": "15px", "marginTop": "15px"}}>Κοινοποίησε το σκόρ σου!
-        </button>
+    return(<button className="share-button" onClick={() => share(shareText, showMessageOnDialog)}>
+        Κοινοποίησε το σκόρ σου!
+    </button>
     )
+}
+
+function share(text, showMessageOnDialog){
+    if(navigator.share){
+        navigator.share({
+            text: text
+        })
+    }
+    else{
+        navigator.clipboard.writeText(text)
+        showMessageOnDialog("Εμπίκεν στο clipboard")
+    }
 }
 
 export default PostGame

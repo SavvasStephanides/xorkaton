@@ -2,4 +2,21 @@
     .correct-word{
         text-align: center;
     }
+
+    .next-word-timer{
+        margin-top: 15px;
+
+        .timer{
+            font-size: 30px;
+            font-weight: bold;
+        }
+    }
+
+    .share-button{
+        background-color: green;
+        color: white;
+        padding: 15px;
+        font-size: 15px;
+        margin-top: 15px;
+    }
 }
