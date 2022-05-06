@@ -1,6 +1,23 @@
 import { useState } from "react";
+import "./postGame.scss"
 
 function PostGame({game, showMessageOnDialog}){
+
+    return (<div className="postgame" style={{textAlign: "center", padding: "30px"}}>
+
+        {game && game.getGameStatus() === "FAIL" && <CorrectWordPane word={game.word} />}
+        <NextWordTimer />
+        <ShareButton shareText={game.getGameAsString()} showMessageOnDialog={showMessageOnDialog}/>
+    </div>)
+}
+
+function CorrectWordPane({word}){
+    return(<div className="correct-word">
+        Το σωστό χωρκόν: <span style={{fontWeight: "bold"}}>{word}</span>
+      </div>)
+}
+
+function NextWordTimer(){
     const [nextWordTimer, setNextWordTimer] = useState("")
 
     setTimeout(() => {
@@ -18,37 +35,28 @@ function PostGame({game, showMessageOnDialog}){
         
       }, 1000)
 
-    return (<div className="postgame" style={{textAlign: "center", padding: "30px"}}>
 
-    {game && game.getGameStatus() === "FAIL" && <div style={
-      {
-        "textAlign": "center"
-      }
-    }>
-      Το σωστό χωρκόν: <span style={{fontWeight: "bold"}}>{game.word}</span>
-    </div>}
+    return(<div style={{"marginTop": "15px"}}>
+    <div>Επόμενο χωρκό σε:</div>
+    <div style={{fontSize: "30px", fontWeight: "bold"}}>{nextWordTimer}</div>
+  </div>)
+}
 
-    
-    <div style={{"marginTop": "15px"}}>
-      <div>Επόμενο χωρκό σε:</div>
-      <div style={{fontSize: "30px", fontWeight: "bold"}}>{nextWordTimer}</div>
-    </div>
-
-    <button onClick={() => {
-    if(navigator.share){
-      navigator.share({
-        text: game.getGameAsString()
-      })
-    }
-    else{
-      navigator.clipboard.writeText(game.getGameAsString())
-      showMessageOnDialog("Εμπίκεν στο clipboard")
-    }
-    
-    }} style={{"backgroundColor": "darkgreen", "color": "white", "padding": "15px", "fontSize": "15px", "marginTop": "15px"}}>Κοινοποίησε το σκόρ σου!</button>
-    
-    
-    </div>)
+function ShareButton({shareText, showMessageOnDialog}){
+    return(<button onClick={() => {
+        if(navigator.share){
+          navigator.share({
+            text: shareText
+          })
+        }
+        else{
+          navigator.clipboard.writeText(shareText)
+          showMessageOnDialog("Εμπίκεν στο clipboard")
+        }
+        
+        }} style={{"backgroundColor": "darkgreen", "color": "white", "padding": "15px", "fontSize": "15px", "marginTop": "15px"}}>Κοινοποίησε το σκόρ σου!
+        </button>
+    )
 }
 
 export default PostGame
