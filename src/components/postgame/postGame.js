@@ -44,7 +44,7 @@ function NextWordTimer(){
 
 function ShareButton({shareText, showMessageOnDialog}){
     return(<button className="share-button" onClick={() => share(shareText, showMessageOnDialog)}>
-        Κοινοποίησε το σκόρ σου!
+        Μοιράσου το σκόρ σου!
     </button>
     )
 }
