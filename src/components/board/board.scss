@@ -6,7 +6,7 @@ $board-square-size: 51px;
     .board-row{
         display: flex;
         .board-row-square{
-            outline: 1px solid black;
+            outline: 1px solid #ddd;
             width: $board-square-size;
             height: $board-square-size;
             margin: 3px;
@@ -37,6 +37,11 @@ $board-square-size: 51px;
         @for $i from 1 through 10 {
             .board-row-square:nth-child(#{$i}n) {
                 animation-delay: #{$i * 0.1}s;
+            }
+        }
+        &[highlight="1"]{
+            .board-row-square[highlight="1"]{
+                outline: 2px solid #666;
             }
         }
     }
