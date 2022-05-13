@@ -19,7 +19,7 @@ $board-square-size: 51px;
         }
 
         .board-row-square[flag="CORRECT"]{
-            background-color: darkgreen;
+            background-color: rgb(2, 144, 2);
             color: white;
             animation: flip 0.3s;
         }
