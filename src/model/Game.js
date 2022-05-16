@@ -123,7 +123,7 @@ function Game(word, id){
     this.getGameAsString = () => {
         let score = this.getGameStatus() === "FAIL" ? "X" : this.cursor.row+1
 
-        let heading = `Χώρκατον ${this.id} ${score}/6`
+        let heading = `🇨🇾 Χώρκατον ${this.id} ${score}/6`
         
         let filledRows = this.board.slice(0, this.cursor.row + 1)
 
@@ -138,7 +138,7 @@ function Game(word, id){
 
         let rowString = rowFlags.map((row) => row.join("")).join("\n")
 
-        let boardAsString = `${heading}\n\n${rowString}`
+        let boardAsString = `${heading}\n\n${rowString}\nhttps://savvas.me/xorkaton`
         
         return boardAsString
     }
