@@ -138,7 +138,7 @@ function Game(word, id){
 
         let rowString = rowFlags.map((row) => row.join("")).join("\n")
 
-        let boardAsString = `${heading}\n\n${rowString}\nhttps://savvas.me/xorkaton`
+        let boardAsString = `${heading}\n\n${rowString}`
         
         return boardAsString
     }

@@ -355,8 +355,7 @@ test("getGameAsString() returns shareable string", () => {
 
 🟩🟩⬛️
 🟩🟩⬛️
-🟩🟩🟩
-https://savvas.me/xorkaton`)
+🟩🟩🟩`)
 })
 
 test("Can run getFlagsForLetters()", () => {
