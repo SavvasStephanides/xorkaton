@@ -8,6 +8,9 @@ function PostGame({game, showMessageOnDialog}){
         {game && game.getGameStatus() === "FAIL" && <CorrectWordPane word={game.word} />}
         <NextWordTimer />
         <ShareButton shareText={game.getGameAsString()} showMessageOnDialog={showMessageOnDialog}/>
+        <div className="coffee">
+            ❤️ Αρέσκει σου το Χώρκατον; <a href="https://buymeacoffee.com/SavvasStephnds" target="_blank">Τζιέρασε καφέ! ☕️</a>
+        </div>
     </div>)
 }
 
