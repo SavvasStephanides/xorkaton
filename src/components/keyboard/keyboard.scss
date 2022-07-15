@@ -15,11 +15,12 @@
         width: 35px;
         height: 35px;
         background-color: #eee;
-        border-radius: 0;
-        border: 1px solid black;
+        border: 0;
         color: black;
         font-size: 21px;
         background-color: #fff;
+        border-radius: 3px;
+        box-shadow: 0 0 6px 1px #444;
 
         &.special-key{
             width: 90px;
