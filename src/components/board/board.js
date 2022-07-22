@@ -1,6 +1,5 @@
 import "./board.scss"
 function Board({game}){
-  {console.log(game.cursor)}
     return (
         <div id="board">
           {

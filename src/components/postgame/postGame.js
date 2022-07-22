@@ -4,8 +4,9 @@ import "./postGame.scss"
 function PostGame({game, showMessageOnDialog}){
 
     return (<div className="postgame" style={{textAlign: "center", padding: "30px"}}>
+        {console.log(game.getGameStatus())}
 
-        {game && game.getGameStatus() === "FAIL" && <CorrectWordPane word={game.word} />}
+        {game && <CorrectWordPane word={game.word} gameStatus={game.getGameStatus()} />}
         <NextWordTimer />
         <ShareButton shareText={game.getGameAsString()} showMessageOnDialog={showMessageOnDialog}/>
         <div className="coffee">
@@ -14,9 +15,14 @@ function PostGame({game, showMessageOnDialog}){
     </div>)
 }
 
-function CorrectWordPane({word}){
+function CorrectWordPane({word, gameStatus}){
     return(<div className="correct-word">
-        Το σωστό χωρκόν: <span style={{fontWeight: "bold"}}>{word}</span>
+        <div>
+            {gameStatus === "SUCCESS" ? "🎉" : "😤"} Το σωστό χωρκόν: <span style={{fontWeight: "bold"}}>{word}</span>
+        </div>
+        <div style={{marginTop: "6px"}}>
+            <a href={`https://www.google.com/maps/place/${word},+Cyprus`}>Μάθε περισσότερα!</a>
+        </div>
       </div>)
 }
 
