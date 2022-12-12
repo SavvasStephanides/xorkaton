@@ -78,21 +78,18 @@ function App() {
       
         {game && <Board game={game} />}
 
-        <div id="ad-placement" style={{
-          width: "100%",
-          height: "90px"
-        }} dangerouslySetInnerHTML={{__html: `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2194018182042050"
-        crossorigin="anonymous"></script>
-   <!-- Xorkaton -->
-   <ins class="adsbygoogle"
-        style="display:block"
-        data-ad-client="ca-pub-2194018182042050"
-        data-ad-slot="4611895987"
-        data-ad-format="auto"
-        data-full-width-responsive="true"></ins>
-   <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-   </script>`}}>
+        <div id="ad-placement" dangerouslySetInnerHTML={{__html: `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2194018182042050"
+     crossorigin="anonymous"></script>
+<!-- Xorkaton -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2194018182042050"
+     data-ad-slot="4611895987"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>`}}>
         </div>
 
         {game.gameIsOver() && <PostGame game={game} showMessageOnDialog={showMessageOnDialog}/>}
