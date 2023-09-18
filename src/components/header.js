@@ -21,7 +21,7 @@ function Header(){
                 top: "30px",
                 right: "6px",
                 textAlign: "center"
-            }}>Contact<br/> developer</a>
+            }}>Contact</a>
         </header>
     )
 }
