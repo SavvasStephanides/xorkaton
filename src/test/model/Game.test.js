@@ -116,12 +116,13 @@ test("checkWord throws exception if word not in word list", () => {
 })
 
 test("checkWord does not throw exception if word in word list", () => {
-    let game = new Game("ΑΧΝΑ")
+    let game = new Game("ΠΥΡΟΙ")
 
-    game.addLetter("Α")
-    game.addLetter("Χ")
-    game.addLetter("Ν")
-    game.addLetter("Α")
+    game.addLetter("Π")
+    game.addLetter("Υ")
+    game.addLetter("Ρ")
+    game.addLetter("Ο")
+    game.addLetter("Ι")
 
     expect(() => game.checkWord()).not.toThrow("WORD_NOT_IN_LIST")
 })
