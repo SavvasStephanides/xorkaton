@@ -4,8 +4,7 @@ import "./postGame.scss"
 function PostGame({game, showMessageOnDialog}){
 
     return (<div className="postgame" style={{textAlign: "center", padding: "30px"}}>
-        {console.log(game.getGameStatus())}
-
+        <a href="/unpezable" style={{display: "block", backgroundColor: "white", width: "300px", margin: "auto", padding: "6px 12px", marginBottom: "25px", textDecoration: "none", color: "black", fontWeight: "bold", borderRadius: "15px", boxShadow: "0 0 15px #aaa"}}>Άρεσε σου το Χώρκατον; Δε τα άλλα μας παιχνίθκια! ❤️</a>
         {game && <CorrectWordPane word={game.word} gameStatus={game.getGameStatus()} />}
         <NextWordTimer />
         <ShareButton shareText={game.getGameAsString()} showMessageOnDialog={showMessageOnDialog}/>
